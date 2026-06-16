@@ -1,27 +1,21 @@
 {
   "name": "XP Character Studio Dynamic System",
-  "short_name": "XP_Studio",
-  "description": "Sistema de gestión y compilación de fichas de personajes con estética retro.",
-  "lang": "es",
-  "start_url": "./index.html",
-  "scope": "./",
+  "short_name": "XP_Char_Studio",
+  "description": "Sistema de gestión y compilación de fichas de personajes con estética retro Windows XP.",
+  "start_url": "./",
   "display": "standalone",
   "background_color": "#008080",
   "theme_color": "#0054e3",
-  "orientation": "portrait",
-  "categories": ["productivity", "design"],
   "icons": [
     {
-      "src": "https://img.icons8.com/color/192/000000/windows-xp.png",
+      "src": "icon-192.png",
       "sizes": "192x192",
-      "type": "image/png",
-      "purpose": "any"
+      "type": "image/png"
     },
     {
-      "src": "https://img.icons8.com/color/512/000000/windows-xp.png",
+      "src": "icon-512.png",
       "sizes": "512x512",
-      "type": "image/png",
-      "purpose": "maskable"
+      "type": "image/png"
     }
   ]
 }
