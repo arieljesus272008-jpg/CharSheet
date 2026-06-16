@@ -212,8 +212,26 @@ const themes = {
     }
 };
 
+// MANEJO GLOBAL DE VENTANAS EMERGENTES (POP-UPS)
+function openPopup(id) {
+    const el = document.getElementById(id);
+    if(el) el.style.display = 'flex';
+}
+function closePopup(id) {
+    const el = document.getElementById(id);
+    if(el) el.style.display = 'none';
+}
+
+function triggerGlitchExplosion() {
+    // Al hacer click en inyectar datos del pop-up, provocamos una distorsión visual extra
+    document.body.style.filter = "invert(1) hue-rotate(180deg) contrast(3)";
+    setTimeout(() => {
+        document.body.style.filter = "none";
+        closePopup('popup-error-01');
+    }, 400);
+}
+
 document.addEventListener("DOMContentLoaded", () => {
-    // ENTORNO Y MANEJO DE PESTAÑAS
     const tabP1 = document.getElementById('tab-trigger-p1');
     const tabP2 = document.getElementById('tab-trigger-p2');
     const panelP1 = document.getElementById('panel-page-1');
@@ -230,6 +248,18 @@ document.addEventListener("DOMContentLoaded", () => {
             tabP2.classList.add('active'); tabP1.classList.remove('active');
             panelP2.classList.add('active-content'); panelP1.classList.remove('active-content');
             downloadZone.style.display = 'none';
+        });
+    }
+
+    // DISPARADORES DE POP-UPS ALEATORIOS AL ESCRIBIR O MODIFICAR DATOS (SIMULANDO BUG)
+    let popupTriggered = false;
+    const inputNameEl = document.getElementById('input-name');
+    if(inputNameEl) {
+        inputNameEl.addEventListener('blur', () => {
+            if(!popupTriggered && inputNameEl.value.length > 2) {
+                openPopup('popup-error-01');
+                popupTriggered = true;
+            }
         });
     }
 
@@ -313,7 +343,7 @@ document.addEventListener("DOMContentLoaded", () => {
         const r = new FileReader();
         r.onload = (e) => {
             const img = new Image();
-            img.crossOrigin = "anonymous"; // Prevención de Taint por seguridad CORS
+            img.crossOrigin = "anonymous";
             img.src = e.target.result;
             img.onload = () => {
                 const c = canvasConfig[key];
@@ -395,15 +425,13 @@ document.addEventListener("DOMContentLoaded", () => {
         downloadZone.style.display = 'block';
         downloadZone.scrollIntoView({ behavior: 'smooth' });
 
-        // Configuración blindada para evitar roturas del DOM en GitHub Pages
         html2canvas(targetElement, {
             scale: 2, 
             useCORS: true, 
-            allowTaint: false, // Evita ensuciar el Canvas en entornos web reales
+            allowTaint: false,
             logging: false,
             backgroundColor: null,
             onclone: (clonedDoc) => {
-                // Sincronización manual forzada del Canvas origen al clonado
                 const originalCanvases = targetElement.querySelectorAll('canvas');
                 const clonedCanvases = clonedDoc.querySelectorAll('canvas');
                 
@@ -426,21 +454,22 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     };
 
-    // Escuchadores de compilación de paneles independientes
     document.getElementById('btn-compile-p1')?.addEventListener('click', () => executeRender(document.getElementById('char-card'), 'Ficha_Personaje'));
     document.getElementById('btn-compile-p2')?.addEventListener('click', () => executeRender(document.getElementById('model-card'), 'Model_Sheet_Personaje'));
 
 
     // --- COMPILACIÓN DEL EMBALAJE GLOBAL MAESTRO (TODO JUNTO) ---
     const compileMasterPack = () => {
-        // Envoltura temporal fuera del visor para estructurar el renderizado doble en horizontal
+        // Disparar pop-up de advertencia de peso antes de compilar el mega-pack
+        openPopup('popup-error-02');
+
         const ghostWrapper = document.createElement('div');
         ghostWrapper.className = 'global-giant-pack';
         ghostWrapper.style.position = 'absolute';
         ghostWrapper.style.top = '-9999px';
         ghostWrapper.style.left = '-9999px';
         ghostWrapper.style.display = 'flex';
-        ghostWrapper.style.flexDirection = 'row'; // Renderizado uno al lado del otro
+        ghostWrapper.style.flexDirection = 'row';
 
         const originalCard = document.getElementById('char-card');
         const originalModel = document.getElementById('model-card');
@@ -454,10 +483,9 @@ document.addEventListener("DOMContentLoaded", () => {
 
         imageContainer.innerHTML = "<p style='font-size:8px; color:#555;'>Procesando Ficha Completa + Model Sheet de forma síncrona en servidor...</p>";
         downloadZone.style.display = 'block';
-        downloadZone.scrollIntoView({ behavior: 'smooth' });
 
         html2canvas(ghostWrapper, {
-            scale: 1.2, // Balance de escala ideal para no saturar memoria móvil
+            scale: 1.2,
             useCORS: true, 
             allowTaint: false,
             logging: false,
@@ -493,3 +521,8 @@ document.addEventListener("DOMContentLoaded", () => {
     document.getElementById('btn-compile-all-p1')?.addEventListener('click', compileMasterPack);
     document.getElementById('btn-compile-all-p2')?.addEventListener('click', compileMasterPack);
 });
+
+// Hacer accesibles las funciones de control de pop-ups desde el HTML nativo
+window.closePopup = closePopup;
+window.openPopup = openPopup;
+window.triggerGlitchExplosion = triggerGlitchExplosion;
