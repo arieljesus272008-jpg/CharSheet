@@ -280,7 +280,6 @@ function processLocalImage(event) {
 function refreshCanvasDraw() {
     if (!imgObj.src) return;
     ctx.clearRect(0, 0, canvas.width, canvas.height);
-    // Dibujo plano nativo sin transformaciones CSS complejas (evita bugs de html2canvas)
     ctx.drawImage(imgObj, imgX, imgY, imgObj.width * imgScale, imgObj.height * imgScale);
 }
 
