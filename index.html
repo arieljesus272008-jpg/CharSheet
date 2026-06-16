@@ -25,7 +25,7 @@
 
     <div class="window-body">
 
-        <div class="section-title" style="color: var(--panel-inputs-text); margin-top: 5px;">🎨 CONFIGURAR FIRMWARE VISUAL DEL PROGRAMA</div>
+        <div class="section-title text-glitch-damaged" style="color: var(--panel-inputs-text); margin-top: 5px;">🎨 CONFIGURAR FIRMWARE VISUAL DEL PROGRAMA</div>
         <div class="grid-inputs" style="margin-bottom: 15px;">
             <div class="input-group">
                 <label>Paletas del Sistema:</label>
@@ -73,7 +73,7 @@
         </div>
 
         <div id="panel-page-1" class="tab-content active-content">
-            <div class="section-title">1. Núcleo de Identidad del Sujeto</div>
+            <div class="section-title text-glitch-damaged">1. Núcleo de Identidad del Sujeto</div>
             <div class="grid-inputs">
                 <div class="input-group">
                     <label>Nombre:</label>
@@ -93,7 +93,7 @@
                 </div>
             </div>
 
-            <div class="section-title">2. Matriz de Atributos y Estadísticas (1-10)</div>
+            <div class="section-title text-glitch-damaged">2. Matriz de Atributos y Estadísticas (1-10)</div>
             <div class="grid-inputs">
                 <div class="input-group">
                     <label>Fuerza (STR): <span id="val-str">5</span></label>
@@ -113,7 +113,7 @@
                 </div>
             </div>
 
-            <div class="section-title">3. Registros Narrativos y Datos de Memoria</div>
+            <div class="section-title text-glitch-damaged">3. Registros Narrativos y Datos de Memoria</div>
             <div class="input-group">
                 <label>Trasfondo Histórico (Sección Ampliada):</label>
                 <textarea id="input-backstory" placeholder="Escribe la biografía detallada aquí..."></textarea>
@@ -133,7 +133,7 @@
                 <textarea id="input-trivia" placeholder="Detalles extra del personaje..."></textarea>
             </div>
 
-            <div class="section-title">4. Firmware Gráfico de Imagen (Avatar e Ítem)</div>
+            <div class="section-title text-glitch-damaged">4. Firmware Gráfico de Imagen (Avatar e Ítem)</div>
             <div class="grid-inputs">
                 <div class="input-group">
                     <label>Avatar Principal:</label>
@@ -165,17 +165,17 @@
                 </div>
             </div>
 
-            <div class="section-title">5. Vista de Salida Real (Monitor Ficha Horizontal)</div>
+            <div class="section-title text-glitch-damaged">5. Vista de Salida Real (Monitor Ficha Horizontal)</div>
             <div class="canvas-container">
-                <div id="char-card" class="glitch-card-effect">
-                    <div class="card-header">💻 DATABASE_SUBJECT_CAPTURED.SYS // HORIZONTAL_DASHBOARD_V2</div>
+                <div id="char-card" class="glitch-card-effect card-damaged-crt">
+                    <div class="card-header scanline-text">💻 DATABASE_SUBJECT_CAPTURED.SYS // HORIZONTAL_DASHBOARD_V2</div>
                     <div class="card-main-layout">
                         <div class="card-col card-col-left">
-                            <div class="avatar-container main-avatar">
+                            <div class="avatar-container main-avatar image-glitch-container">
                                 <div class="avatar-placeholder" id="placeholder-text-main">[ REGISTRO_VACÍO.RAW <br><br> AVATAR ]</div>
                                 <canvas id="avatar-canvas" width="220" height="250"></canvas>
                             </div>
-                            <div class="basic-details">
+                            <div class="basic-details info-block-damaged">
                                 <p>ID_NAME: <span id="card-name">--------</span></p>
                                 <p>CLASS_TYPE: <span id="card-class">--------</span></p>
                                 <p>HEIGHT: <span id="card-height">--------</span></p>
@@ -190,23 +190,23 @@
                             </div>
                         </div>
                         <div class="card-col card-col-center">
-                            <div class="info-block backstory-block">
-                                <div class="info-block-title">📊 HISTORIAL // TRASFONDO CRÍTICO</div>
+                            <div class="info-block backstory-block info-block-damaged">
+                                <div class="info-block-title label-flash">📊 HISTORIAL // TRASFONDO CRÍTICO</div>
                                 <p id="card-backstory">Ningún registro cargado en el sistema.</p>
                             </div>
                             <div class="grid-two-col">
-                                <div class="info-block">
+                                <div class="info-block info-block-damaged">
                                     <div class="info-block-title">✔️ GUSTOS</div>
                                     <p id="card-likes">Variables vacías.</p>
                                 </div>
-                                <div class="info-block">
+                                <div class="info-block info-block-damaged">
                                     <div class="info-block-title">❌ DISGUSTOS</div>
                                     <p id="card-dislikes">Variables vacías.</p>
                                 </div>
                             </div>
                         </div>
                         <div class="card-col card-col-right">
-                            <div class="info-block">
+                            <div class="info-block info-block-damaged">
                                 <div class="info-block-title">⚔️ RENDIMIENTO EN COMBATE</div>
                                 <div class="stat-display-row">
                                     <span class="stat-label">STR:</span>
@@ -225,13 +225,13 @@
                                     <div class="stat-bar-container"><div id="bar-res" class="stat-bar-fill" style="width: 50%;"></div></div>
                                 </div>
                             </div>
-                            <div class="info-block anomalies-block">
-                                <div class="info-block-title">🔍 CURIOSIDADES // ANOMALÍAS</div>
+                            <div class="info-block anomalies-block info-block-damaged">
+                                <div class="info-block-title label-flash-alert">🔍 CURIOSIDADES // ANOMALÍAS</div>
                                 <p id="card-trivia">Esperando indexación de anomalías...</p>
                             </div>
                         </div>
                     </div>
-                    <div class="footer-tag">SISTEMA COMPILADO // MÓDULO HORIZONTAL ESTABLE</div>
+                    <div class="footer-tag scanline-text">SISTEMA COMPILADO // MÓDULO HORIZONTAL ESTABLE</div>
                 </div>
             </div>
             
@@ -242,7 +242,7 @@
         </div>
 
         <div id="panel-page-2" class="tab-content">
-            <div class="section-title">1. Subir Vistas de Matrices del Modelo Cromático</div>
+            <div class="section-title text-glitch-damaged">1. Subir Vistas de Matrices del Modelo Cromático</div>
             <div class="grid-inputs fullbody-upload-grid">
                 <div class="input-group">
                     <label>01. Vista Frontal:</label>
@@ -294,10 +294,10 @@
                 </div>
             </div>
 
-            <div class="section-title">2. Vista de Salida Real (Canvas de Modelo Completo + Paleta Pura)</div>
+            <div class="section-title text-glitch-damaged">2. Vista de Salida Real (Canvas de Modelo Completo + Paleta Pura)</div>
             <div class="canvas-container">
-                <div id="model-card">
-                    <div class="card-header">📐 SYSTEM_VISUAL_ORTHOGRAPHIC_MATRIX.SYS // FULL_BODY_PALETTE</div>
+                <div id="model-card" class="card-damaged-crt">
+                    <div class="card-header scanline-text">📐 SYSTEM_VISUAL_ORTHOGRAPHIC_MATRIX.SYS // FULL_BODY_PALETTE</div>
                     <div class="model-main-layout">
                         
                         <div class="palette-pure-sidebar">
@@ -307,22 +307,22 @@
                         </div>
 
                         <div class="model-views-quad">
-                            <div class="fbody-box">
+                            <div class="fbody-box image-glitch-container">
                                 <div class="fbody-tag">FRONT_VIEW.RAW</div>
                                 <div class="avatar-placeholder" id="placeholder-fb-front">[ CARGAR FRONT ]</div>
                                 <canvas id="canvas-fb-front" width="210" height="620"></canvas>
                             </div>
-                            <div class="fbody-box">
+                            <div class="fbody-box image-glitch-container">
                                 <div class="fbody-tag">BACK_VIEW.RAW</div>
                                 <div class="avatar-placeholder" id="placeholder-fb-back">[ CARGAR BACK ]</div>
                                 <canvas id="canvas-fb-back" width="210" height="620"></canvas>
                             </div>
-                            <div class="fbody-box">
+                            <div class="fbody-box image-glitch-container">
                                 <div class="fbody-tag">LEFT_SIDE.RAW</div>
                                 <div class="avatar-placeholder" id="placeholder-fb-left">[ CARGAR LEFT ]</div>
                                 <canvas id="canvas-fb-left" width="210" height="620"></canvas>
                             </div>
-                            <div class="fbody-box">
+                            <div class="fbody-box image-glitch-container">
                                 <div class="fbody-tag">RIGHT_SIDE.RAW</div>
                                 <div class="avatar-placeholder" id="placeholder-fb-right">[ CARGAR RIGHT ]</div>
                                 <canvas id="canvas-fb-right" width="210" height="620"></canvas>
@@ -330,7 +330,7 @@
                         </div>
 
                     </div>
-                    <div class="footer-tag">MATRIZ ORTOGRÁFICA GRÁFICA // PALETA ACTIVA COMPILADA</div>
+                    <div class="footer-tag scanline-text">MATRIZ ORTOGRÁFICA GRÁFICA // PALETA ACTIVA COMPILADA</div>
                 </div>
             </div>
             
@@ -341,11 +341,50 @@
         </div>
 
         <div class="download-zone" id="output-download-zone">
-            <p><strong>💾 ¡SISTEMA DE RASTERIZACIÓN EMITIDO CON ÉXITO!</strong></p>
+            <p><strong class="blink-text">💾 ¡SISTEMA DE RASTERIZACIÓN EMITIDO CON ÉXITO!</strong></p>
             <p style="margin-bottom: 15px; font-size: 7px; color: var(--window-border);">Si estás en móvil, mantén presionado el bloque de abajo para guardar o usa el botón de descarga directa.</p>
             <div id="image-target-container"></div>
         </div>
 
+    </div>
+</div>
+
+<div class="popup-overlay" id="popup-error-01">
+    <div class="popup-box">
+        <div class="popup-title-bar">
+            <span>⚠️ Fatal Stack Overflow Error</span>
+            <button class="popup-close-btn" onclick="closePopup('popup-error-01')">×</button>
+        </div>
+        <div class="popup-body-content">
+            <div class="popup-icon">❌</div>
+            <div class="popup-text">
+                <p><strong>ERROR 0x000F92A: CRITICAL_PROCESS_DIED</strong></p>
+                <p>El búfer de memoria gráfica asignado al renderizado de la ficha está corrupto o experimenta parpadeos cuánticos. Se requiere inyección manual forzada de datos base.</p>
+            </div>
+        </div>
+        <div class="popup-footer-actions">
+            <button class="popup-action-btn" onclick="closePopup('popup-error-01')">Omitir Error</button>
+            <button class="popup-action-btn focus-action" onclick="triggerGlitchExplosion()">Inyectar Código</button>
+        </div>
+    </div>
+</div>
+
+<div class="popup-overlay" id="popup-error-02">
+    <div class="popup-box">
+        <div class="popup-title-bar">
+            <span>🚨 SYSTEM COMPILATION WARNING!!</span>
+            <button class="popup-close-btn" onclick="closePopup('popup-error-02')">×</button>
+        </div>
+        <div class="popup-body-content">
+            <div class="popup-icon">⚠️</div>
+            <div class="popup-text">
+                <p><strong>ADVERTENCIA DE FIRMWARE GRÁFICO:</strong></p>
+                <p>Se está intentando compilar un archivo compuesto masivo (Ficha + Model Sheet de 2350px de ancho). Su procesador y GPU Iris Xe entrarán en modo sobrecarga síncrona.</p>
+            </div>
+        </div>
+        <div class="popup-footer-actions">
+            <button class="popup-action-btn focus-action" onclick="closePopup('popup-error-02')">Autorizar Descarga Máxima</button>
+        </div>
     </div>
 </div>
 
