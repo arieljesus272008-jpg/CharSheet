@@ -313,6 +313,8 @@ document.addEventListener("DOMContentLoaded", () => {
         const r = new FileReader();
         r.onload = (e) => {
             const img = new Image();
+           // AJUSTE CRÍTICO GITHUB: Configurar CORS vacío antes de inyectar la fuente de datos Base64
+            img.crossOrigin = "anonymous";
             img.src = e.target.result;
             img.onload = () => {
                 const c = canvasConfig[key];
@@ -332,6 +334,7 @@ document.addEventListener("DOMContentLoaded", () => {
         r.readAsDataURL(file);
     };
 
+    document.getElementById('input-file')?.addEventListener('change', (e) => initImage(e.target.files[0], 'main'));
     document.getElementById('input-file-item')?.addEventListener('change', (e) => initImage(e.target.files[0], 'item'));
     document.getElementById('input-fbody-front')?.addEventListener('change', (e) => initImage(e.target.files[0], 'fbFront'));
     document.getElementById('input-fbody-back')?.addEventListener('change', (e) => initImage(e.target.files[0], 'fbBack'));
@@ -385,7 +388,7 @@ document.addEventListener("DOMContentLoaded", () => {
     renderPaletteNodes();
 
 
-    // --- SISTEMA CRÍTICO DE COMPILACIÓN (INDIVIDUAL Y GLOBAL) ---
+    // --- SISTEMA CRÍTICO DE COMPILACIÓN SEGURO COMPATIBLE CON GITHUB PAGES ---
     const imageContainer = document.getElementById('image-target-container');
 
     const executeRender = (targetElement, fileName) => {
@@ -393,12 +396,15 @@ document.addEventListener("DOMContentLoaded", () => {
         downloadZone.style.display = 'block';
         downloadZone.scrollIntoView({ behavior: 'smooth' });
 
+        // AJUSTE PARA GITHUB: Forzar uso de CORS, desactivar Taint y permitir proxies remotos
         html2canvas(targetElement, {
-            scale: 2, useCORS: true, allowTaint: true, logging: false,
+            scale: 2, 
+            useCORS: true, 
+            allowTaint: false, // ¡Cambio crítico! True ensucia el lienzo en dominios reales de internet
+            logging: false,
+            backgroundColor: null,
             onclone: (clonedDoc) => {
-                // Buscamos canvas originales dentro del bloque que se va a procesar
                 const originalCanvases = targetElement.querySelectorAll('canvas');
-                // Buscamos los canvas equivalentes en el DOM clonado por html2canvas
                 const clonedCanvases = clonedDoc.querySelectorAll('canvas');
                 
                 clonedCanvases.forEach((clonedCanvas, i) => {
@@ -416,7 +422,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 <a href="${url}" download="${fileName}.png" class="btn-xp" style="display:inline-block; text-decoration:none; text-align:center; width:auto; padding:10px 20px;">⬇️ DESCARGAR ARCHIVO DIRECTO</a>
             `;
         }).catch(err => {
-            imageContainer.innerHTML = `<p style='color:red;'>Error del compilador: ${err}</p>`;
+            imageContainer.innerHTML = `<p style='color:red;'>Error del compilador de GitHub: ${err.message}</p>`;
         });
     };
 
@@ -426,15 +432,13 @@ document.addEventListener("DOMContentLoaded", () => {
 
     // COMPILACIÓN COMPLETA (Ficha + Model Sheet Juntos)
     const compileMasterPack = () => {
-        // Creamos un contenedor fantasma temporal fuera de la pantalla
         const ghostWrapper = document.createElement('div');
         ghostWrapper.className = 'global-giant-pack';
         ghostWrapper.style.position = 'absolute';
         ghostWrapper.style.top = '-9999px';
         ghostWrapper.style.left = '-9999px';
-        ghostWrapper.style.display = 'flex'; // Forzamos visibilidad para el motor gráfico
+        ghostWrapper.style.display = 'flex';
 
-        // Clonamos las tarjetas originales directamente
         const originalCard = document.getElementById('char-card');
         const originalModel = document.getElementById('model-card');
         
@@ -445,15 +449,17 @@ document.addEventListener("DOMContentLoaded", () => {
         ghostWrapper.appendChild(cloneModel);
         document.body.appendChild(ghostWrapper);
 
-        // Pasamos el wrapper fantasma pero le inyectamos los Canvas de los elementos ORIGINALES en pantalla
-        imageContainer.innerHTML = "<p style='font-size:8px; color:#555;'>Procesando Ficha Completa + Model Sheet de forma síncrona...</p>";
+        imageContainer.innerHTML = "<p style='font-size:8px; color:#555;'>Procesando Ficha Completa + Model Sheet de forma síncrona en servidor...</p>";
         downloadZone.style.display = 'block';
         downloadZone.scrollIntoView({ behavior: 'smooth' });
 
         html2canvas(ghostWrapper, {
-            scale: 1.5, useCORS: true, allowTaint: true, logging: false,
+            scale: 1.5, 
+            useCORS: true, 
+            allowTaint: false, // Protección activa para GitHub Pages
+            logging: false,
+            backgroundColor: null,
             onclone: (clonedDoc) => {
-                // Mapeo síncrono estricto de Canvas del DOM vivo al DOM fantasma de html2canvas
                 const sourceCanvases = [
                     ...originalCard.querySelectorAll('canvas'),
                     ...originalModel.querySelectorAll('canvas')
@@ -474,9 +480,9 @@ document.addEventListener("DOMContentLoaded", () => {
                 <br><br>
                 <a href="${url}" download="Ficha_Completa_y_ModelSheet.png" class="btn-xp" style="display:inline-block; text-decoration:none; text-align:center; width:auto; padding:10px 20px;">⬇️ DESCARGAR HOJA MAESTRA COMPLETA (PNG)</a>
             `;
-            document.body.removeChild(ghostWrapper); // Limpieza de memoria
+            document.body.removeChild(ghostWrapper);
         }).catch(err => {
-            imageContainer.innerHTML = `<p style='color:red;'>Error en empaquetado maestro: ${err}</p>`;
+            imageContainer.innerHTML = `<p style='color:red;'>Error en empaquetado maestro: ${err.message}</p>`;
             if(ghostWrapper.parentNode) document.body.removeChild(ghostWrapper);
         });
     };
