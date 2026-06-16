@@ -1,0 +1,14 @@
+{
+  "background_color": "#4d1717",
+  "dir": "ltr",
+  "display": "standalone",
+  "name": "CharacterSheetRKS",
+  "orientation": "any",
+  "scope": "/",
+  "short_name": "CSRKS",
+  "start_url": "/",
+  "theme_color": "#895858",
+  "id": "RKS",
+  "description": "RKS",
+  "lang": "en"
+}
